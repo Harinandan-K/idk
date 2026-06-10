@@ -1,0 +1,28 @@
+# =========================
+# 1. Python Environment files
+# =========================
+venv/
+env/
+.venv/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# 2. Database Files (CRITICAL)
+# =========================
+*.db-journal
+*.sqlite3-journal
+*.db-wal
+*.db-shm
+
+# =========================
+# 3. Text Editor & OS Files
+# =========================
+.vscode/
+.idea/
+*.swp
+*~
+
+.env
