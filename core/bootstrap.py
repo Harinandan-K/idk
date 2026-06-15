@@ -1,12 +1,17 @@
-import sys
 import os
-   
+import sys
+import logging
+
+logger = logging.getLogger(__name__)
+
 def os_check() -> str:
     compatable_os: list[str] = ["linux", "darwin"]
     if  sys.platform in compatable_os:
-        return('OK_OS_SUPPORTED') #LOG 
+        logger.info("OK_OS_SUPPORTED")
+        return('OK_OS_SUPPORTED')
     else:
-        return('ERR_OS_NOT_SUPPORTED') #LOG
+        logger.error('ERR_OS_NOT_SUPPORTED')
+        return('ERR_OS_NOT_SUPPORTED')
 
 def shell_check() -> str:
     compatable_shell: list[str] = ['bash', 'zsh', 'fish']
@@ -14,12 +19,15 @@ def shell_check() -> str:
     if  shell_dir != None:
         shell_dir_split: list[str] = shell_dir.split('/')
     else:
-        return('ERR_NO_SHELL_FOUND') #LOG
+        logger.error('ERR_NO_SHELL_FOUND')
+        return('ERR_NO_SHELL_FOUND')
     shell_list: str = shell_dir_split[-1]
     if  shell_list in compatable_shell:
-        return('OK_SHELL_SUPPORTED') #LOG
+        logger.info('OK_SHELL_SUPPORTED')
+        return('OK_SHELL_SUPPORTED')
     else:
-        return('ERR_SHELL_NOT_SUPPORTED') #LOG
+        logger.error('ERR_SHELL_NOT_SUPPORTED')
+        return('ERR_SHELL_NOT_SUPPORTED')
 
 def base_checks() -> str :
     return_os_check: str = os_check()
