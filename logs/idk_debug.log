@@ -1,2 +1,6 @@
-[INFO] [main.py] "Logging succefully started!" [Line No: 10 by __main__]
-[INFO] [main.py] "OK_ALL_CHECK_SUCCESS" [Line No: 18 by root]
+[15/06/26 21:47:39] [INFO] "Logging succefully started!" [main.py:main:10]
+[15/06/26 21:47:39] [DEBUG] "ADD: check for initial_setup_wizard" [main.py:main:12]
+[15/06/26 21:47:39] [INFO] "OK_OS_SUPPORTED" [bootstrap.py:os_check:13]
+[15/06/26 21:47:39] [INFO] "OK_SHELL_SUPPORTED" [bootstrap.py:shell_check:30]
+[15/06/26 21:47:39] [INFO] "OK_PY_VER_SUPPORTED" [bootstrap.py:py_version_check:38]
+[15/06/26 21:47:39] [INFO] "OK_ALL_CHECK_SUCCESS" [main.py:main:20]
