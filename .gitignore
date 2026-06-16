@@ -25,4 +25,18 @@ __pycache__/
 *.swp
 *~
 
-.env
+.envi 
+
+# =========================
+# 4. Python Packaging & Build Files
+# =========================
+build/
+dist/
+*.egg-info/
+src/*.egg-info/
+
+# =========================
+# 5. Logs & Output Data
+# =========================
+logs/
+*.log

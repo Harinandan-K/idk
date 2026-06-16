@@ -1,4 +1,5 @@
 from typing import Any
+from pathlib import Path
 
 LOGGING_CONFIG: dict[str, Any] = {
     'version': 1,
@@ -13,7 +14,7 @@ LOGGING_CONFIG: dict[str, Any] = {
         'file_worker': {
             'mode': 'w',
             'class': 'logging.FileHandler',
-            'filename': 'logs/idk_debug.log',
+            'filename': str(Path(__file__).resolve().parent.parent.parent.parent / 'logs' / 'idk.log'),
             'formatter': 'custom_style',
             'level': 'DEBUG'
         }
@@ -23,3 +24,6 @@ LOGGING_CONFIG: dict[str, Any] = {
         'level': 'DEBUG'
     }
 }
+
+if __name__ == "__main__":
+    print(Path(__file__).resolve().parent.parent.parent.parent / 'idk.log' )
