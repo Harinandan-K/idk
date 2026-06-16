@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "idk"
-version = "0.1.0"
+version = "0.0.1a"
 description = "A powerful custom CLI automation tool"
 readme = "README.md"
 requires-python = ">=3.10"
