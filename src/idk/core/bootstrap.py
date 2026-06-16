@@ -40,17 +40,17 @@ def py_version_check() -> str:
     
 
 def base_checks() -> str :
-    return_os_check: str = os_check()
-    if  return_os_check.startswith("ERR_"):
-        return return_os_check
+    os_check_return: str = os_check()
+    if  os_check_return.startswith("ERR_"):
+        return os_check_return
     
-    return_shell_check: str = shell_check()
-    if  return_shell_check.startswith("ERR_"):
-        return return_shell_check
+    shell_check_return: str = shell_check()
+    if  shell_check_return.startswith("ERR_"):
+        return shell_check_return
     
-    return_py_check: str = py_version_check()
-    if  return_shell_check.startswith("ERR_"):
-        return return_py_check
+    py_check_return : str = py_version_check()
+    if  shell_check_return.startswith("ERR_"):
+        return py_check_return
     
     return ('OK_ALL_CHECK_SUCCESS')
 
