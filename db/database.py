@@ -6,4 +6,16 @@ DB_FILE= "commands.db"
 conn = sqlite3.connect(DB_FILE)
 cur = conn.cursor()
 
+#Creating the database 
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS commands(
+        name PRIMARY KEY,
+        description TEXT NOT NULL
+    )
+""")
 
+#Committing the changes
+conn.commit()
+
+#Closing the connection
+conn.close()
