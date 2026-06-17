@@ -7,7 +7,7 @@ def main() -> None:
    #setting up the logger
    logging.config.dictConfig(log_config.LOGGING_CONFIG)
    logger = logging.getLogger(__name__)
-   logger.info("Logging succefully started")
+   logger.info("Logging successfully started")
 
    #perform the base_check 
    base_check_return: str = bootstrap.base_checks()
