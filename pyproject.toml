@@ -14,3 +14,7 @@ dependencies = [
 
 [project.scripts]
 idk = "idk.main:main"
+
+#test runs
+
+test-idk = None
