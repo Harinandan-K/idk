@@ -13,7 +13,6 @@ def main() -> None:
    base_check_return: str = bootstrap.base_checks()
    if  base_check_return.startswith('ERR_'):
       logger.debug("Need to pass the ERR cli module")
-      logger.error(base_check_return)
    else:
       logger.info(base_check_return)
 
@@ -21,7 +20,6 @@ def main() -> None:
    setup_caller_return: str = setup_wizard.setup_caller()
    if  setup_caller_return.startswith('ERR_'):
       logger.debug("Need to pass the ERR cli module")
-      logger.error(setup_caller_return)
    else:
       logger.info(setup_caller_return)
 
