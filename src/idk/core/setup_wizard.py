@@ -1,6 +1,6 @@
-import sys
+#import sys
 import logging
-import subprocess
+#import subprocess
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 def setup_caller() -> str:
     
-    return ('OK_SETUP_WIZARD_SUCCESS')
+    return ('OK_SETUP_WIZARD_ROUND1_SUCCESS')
 
 
 if  __name__ == '__main__':
