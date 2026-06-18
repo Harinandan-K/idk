@@ -1,6 +1,6 @@
-def read():
+def read() -> None:
     command = str(input())
-    command_split = command.split()
+    command_split : list[str] = command.split()
 
     if command_split[0] == "idk":
         print("HI welcome to IDK")

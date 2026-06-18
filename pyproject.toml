@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "idk"
+version = "0.0.1a"
+description = "A powerful custom CLI automation tool"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "typer>=0.12.0",
+]
+
+[project.scripts]
+idk = "idk.main:main"
+
+#test runs
+
+test-idk = None
