@@ -11,14 +11,14 @@ def main() -> None:
 
    #perform the base_check 
    base_check_return: str = bootstrap.base_checks()
-   if  base_check_return.startswith('ERR_'):
+   if  base_check_return.startswith('FATAL_'):
       logger.debug("Need to pass the ERR cli module")
    else:
       logger.info(base_check_return)
 
    #setup wizard (runs if new install)
    setup_caller_return: str = setup_wizard.setup_caller()
-   if  setup_caller_return.startswith('ERR_'):
+   if  setup_caller_return.startswith('FATAL_'):
       logger.debug("Need to pass the ERR cli module")
    else:
       logger.info(setup_caller_return)
