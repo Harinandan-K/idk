@@ -5,7 +5,7 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-def install_req() -> str:
+'''def install_req() -> str:
     req_file_path = Path(__file__).resolve().parent.parent / 'requirements.txt'
     if  not req_file_path.is_file():
         logger.error('ERR_REQ.TXT_MISSING')
@@ -23,13 +23,10 @@ def install_req() -> str:
             
     except subprocess.CalledProcessError as err:
         logger.error(f'ERR_PIP_MODULE_INSTALL_FAILED -> \n{err.stderr}')
-        return ('ERR_PIP_MODULE_INSTALL_FAILED')
+        return ('ERR_PIP_MODULE_INSTALL_FAILED')'''
     
 
 def setup_caller() -> str:
-    install_req_return: str = install_req()
-    if  install_req_return.startswith("ERR_"):
-        return install_req_return
     
     return ('OK_SETUP_WIZARD_SUCCESS')
 
