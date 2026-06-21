@@ -1,5 +1,5 @@
 import logging.config
-from idk.core import bootstrap, log_config, setup_wizard, history_reader
+from idk.core import bootstrap, history_collector, log_config, setup_wizard, history_cleaner
 
 
 def main() -> None:
@@ -27,15 +27,18 @@ def main() -> None:
       logger.info(setup_caller_return)
 
    #read shell histrory from ./<shell>_history
-   history_reader_return: str = history_reader.history_read()
-   if  history_reader_return.startswith('FATAL_'):
+   history_collector_return: str = history_collector.history_collector()
+   if  history_collector_return.startswith('FATAL_'):
       logger.debug('Need to pass the ERR cli module')
    else:
-      logger.info(history_reader_return)
+      logger.info(history_collector_return)
 
    #filter shell history (src/idk/etc/raw_shell_history.txt)
-
-
+   history_cleaner_return: str = history_cleaner.history_cleaner()
+   if  history_cleaner_return.startswith('FATAL_'):
+      logger.debug('Need to pass the ERR cli module')
+   else:
+      logger.info(history_cleaner_return)
 
 if __name__ == '__main__':
    main()
