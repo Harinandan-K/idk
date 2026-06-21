@@ -91,13 +91,30 @@ kitty
 # If you block these, you lose the file paths!
 # (e.g., blocking 'nvim' means you lose 'nvim ~/.config/idk/main.py')
 # ==========================================
-# start typing here - p.s: Read the warning!! (feel free to remove this line)
 c
+ln
 yazi
 y
-open .
+open
 alias
 echo
 rm
 python3
-arduino
+arduino-cli
+steam
+git
+code
+python
+"""
+⃵⃴
+chmod
+mv
+cp
+pip
+dolphin
+killall
+/
+tar
+eval
+fdisk
+jstest-gtk
