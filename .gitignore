@@ -16,6 +16,9 @@ __pycache__/
 *.sqlite3-journal
 *.db-wal
 *.db-shm
+*.db
+*.db-wal
+*.db-shm
 
 # =========================
 # 3. Text Editor & OS Files

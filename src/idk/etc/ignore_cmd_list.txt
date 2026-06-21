@@ -1,0 +1,103 @@
+# ==========================================
+# IDK IGNORE LIST 
+# ==========================================
+
+# --- Navigation & Basic File Ops (High Spam) ---
+ls
+ll
+la
+l
+sl
+cd
+pwd
+tree
+dirs
+pushd
+popd
+clear
+history
+exit
+logout
+q
+
+# --- System Monitoring & Info ---
+top
+htop
+btop
+btop++
+glances
+nvtop
+ps
+jobs
+fg
+bg
+free
+df
+du
+ncdu
+uptime
+w
+whoami
+id
+date
+cal
+time
+watch
+
+# --- Quick File Readers ---
+cat
+bat
+less
+more
+zcat
+zless
+
+# --- Terminal Aesthetics & Flexing ---
+neofetch
+fastfetch
+pfetch
+cmatrix
+tldr
+man
+help
+
+# --- Environment & Window Manager Reloads ---
+source
+swaymsg
+waybar
+
+# --- Quick Network Checks ---
+ping
+speedtest
+curl
+wget
+
+# ==========================================
+# ⚠️ THINK TWICE BEFORE KEEPING THESE BELOW ⚠️
+# If you block these, you lose the file paths!
+# (e.g., blocking 'nvim' means you lose 'nvim ~/.config/idk/main.py')
+# ==========================================
+vi
+vim
+nvim
+nano
+touch
+mkdir
+kitty
+
+# ==========================================
+# USER CUSTOME LIST OF CMD TO IGNORE
+# ⚠️ THINK TWICE BEFORE KEEPING THESE BELOW ⚠️
+# If you block these, you lose the file paths!
+# (e.g., blocking 'nvim' means you lose 'nvim ~/.config/idk/main.py')
+# ==========================================
+# start typing here - p.s: Read the warning!! (feel free to remove this line)
+c
+yazi
+y
+open .
+alias
+echo
+rm
+python3
+arduino
