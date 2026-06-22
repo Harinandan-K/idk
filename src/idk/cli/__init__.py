@@ -1,3 +1,3 @@
-from . import parser
+from . import cli
 
-__all__ = ["parser"]
+__all__ = ["cli"]
