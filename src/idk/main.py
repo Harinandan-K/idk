@@ -1,7 +1,7 @@
 import logging.config
 from idk.core import bootstrap, history_collector, log_config, setup_wizard, history_cleaner
 #from idk.cli import cli
-
+from idk.db import create_db
 
 def main() -> None:
 
@@ -21,6 +21,11 @@ def main() -> None:
 
    logger.debug('DEBUG_CHECK_FOR_1st_RUN -> check if idk is a new install or not')
    #create DB
+   create_db_return = create_db.init_db()
+   '''if  create_db_return.startswith('FATAL_'):
+      logger.debug('Need to pass the ERR cli module')
+   else:
+      logger.info(create_db_return)'''
    #cli call for first run -> welcome msg
 
    #setup wizard round 1

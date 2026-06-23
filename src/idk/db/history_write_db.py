@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
+from idk.db import create_db
 
-from idk.db.database import get_connection
 
 logger = logging.getLogger(__name__)
 logger.info('INFO_LOGGING_OPERATIONS')
@@ -24,19 +24,12 @@ def read_clean_history(clean_file: Path = CLEAN_HISTORY_FILE) -> list[str]:
 
 
 def push_to_db(cmd_list: list[str]) -> str:
-    """
-    pushes cleaned commands into the db.
-    - commands table: catalog entry, one row per unique command (INSERT OR IGNORE
-      so re-running this never errors on duplicates already present from a past run)
-    - usage_logs table: one row per occurrence, this is what powers the adaptive
-      sort / leaderboard feature later in analytics.py
-    """
     if not cmd_list:
         logger.warning('WARN_NO_COMMANDS_TO_PUSH')
         return ('WARN_NO_COMMANDS_TO_PUSH')
 
     try:
-        with get_connection() as conn:
+        with create_db.get_connection() as conn:
             # description is NOT NULL in the schema, empty string is a safe
             # placeholder until the whatis fallback backfills real descriptions
             conn.executemany(
