@@ -8,13 +8,11 @@ logger.info('INFO_LOGGING_DB_CREATE')
 
 DB_FILE = Path(__file__).parent / "IDK_USER.db"
 
-# context manager to handle connection, commit, rollback and closure
 @contextmanager
 def get_connection(path : Path = DB_FILE):
     conn = sqlite3.connect(path)
-    conn.row_factory = sqlite3.Row  # lets us access columns by name
+    conn.row_factory = sqlite3.Row  
     try:
-        # WAL mode keeps reads fast and non-blocking during writes
         conn.execute("PRAGMA journal_mode=WAL;")
         conn.execute("PRAGMA foreign_keys=ON;")
         yield conn

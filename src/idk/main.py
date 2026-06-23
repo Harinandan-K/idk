@@ -1,4 +1,5 @@
 import logging.config
+from pathlib import Path
 from idk.core import bootstrap, history_collector, log_config, setup_wizard, history_cleaner
 #from idk.cli import cli
 from idk.db import create_db
@@ -19,38 +20,41 @@ def main() -> None:
    else:
       logger.info(base_check_return)
 
-   logger.debug('DEBUG_CHECK_FOR_1st_RUN -> check if idk is a new install or not')
-   #create DB
-   create_db_return = create_db.init_db()
-   '''if  create_db_return.startswith('FATAL_'):
-      logger.debug('Need to pass the ERR cli module')
-   else:
-      logger.info(create_db_return)'''
-   #cli call for first run -> welcome msg
 
-   #setup wizard round 1
-   setup_caller_return: str = setup_wizard.setup_caller()
-   if  setup_caller_return.startswith('FATAL_'):
-      logger.debug('Need to pass the ERR cli module')
-   else:
-      logger.info(setup_caller_return)
+   # check for first install run
+   if not  (Path(__file__).resolve().parent.parent / 'db' / 'IDK_USER.db').exists():
+      #create DB
+      create_db_return = create_db.init_db()
+      '''if  create_db_return.startswith('FATAL_'):
+         logger.debug('Need to pass the ERR cli module')
+      else:
+         logger.info(create_db_return)'''
+      
+      #cli call for first run -> welcome msg
+
+      #setup wizard round 1
+      '''setup_caller_return: str = setup_wizard.setup_caller()
+      if  setup_caller_return.startswith('FATAL_'):
+         logger.debug('Need to pass the ERR cli module')
+      else:
+         logger.info(setup_caller_return)
 
 
-   #read shell history
-   history_collector_return: str = history_collector.history_collector()
-   if  history_collector_return.startswith('FATAL_'):
-      logger.debug('Need to pass the ERR cli module')
-   else:
-      logger.info(history_collector_return)
+      #read shell history
+      history_collector_return: str = history_collector.history_collector()
+      if  history_collector_return.startswith('FATAL_'):
+         logger.debug('Need to pass the ERR cli module')
+      else:
+         logger.info(history_collector_return)
 
-   #clean shell history
-   history_cleaner_return: str = history_cleaner.history_cleaner()
-   if  base_check_return.startswith('ERR_') or history_cleaner_return.startswith('FATAL_'):
-      logger.debug('Need to pass the ERR cli module')
-   else:
-      logger.info(history_cleaner_return)
+      #clean shell history
+      history_cleaner_return: str = history_cleaner.history_cleaner()
+      if  base_check_return.startswith('ERR_') or history_cleaner_return.startswith('FATAL_'):
+         logger.debug('Need to pass the ERR cli module')
+      else:
+         logger.info(history_cleaner_return)'''
 
-   #push the clean history to db
+      #push the clean history to db
    
 
 if __name__ == '__main__':

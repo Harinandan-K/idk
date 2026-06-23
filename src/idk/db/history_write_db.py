@@ -10,13 +10,11 @@ CLEAN_HISTORY_FILE: Path = Path(__file__).resolve().parent.parent / 'etc' / 'cle
 
 
 def read_clean_history(clean_file: Path = CLEAN_HISTORY_FILE) -> list[str]:
-    """reads the cleaned command list produced by history_cleaner.py"""
     if  not clean_file.exists():
         logger.error(f'ERR_CLEAN_HISTORY_FILE_NOT_FOUND -> {clean_file}')
         return []
 
     with open(clean_file, 'r', encoding='utf-8', errors='ignore') as f:
-        # strip blank lines and trailing newlines, keep command text as-is
         cmd_list: list[str] = [line.strip() for line in f if line.strip()]
 
     logger.info(f'OK_CLEAN_HISTORY_READ -> {len(cmd_list)} commands found')
@@ -30,8 +28,6 @@ def push_to_db(cmd_list: list[str]) -> str:
 
     try:
         with create_db.get_connection() as conn:
-            # description is NOT NULL in the schema, empty string is a safe
-            # placeholder until the whatis fallback backfills real descriptions
             conn.executemany(
                 "INSERT OR IGNORE INTO commands (name, description) VALUES (?, ?)",
                 [(cmd, '') for cmd in cmd_list]
@@ -51,7 +47,6 @@ def push_to_db(cmd_list: list[str]) -> str:
 
 
 def ingest_clean_history() -> str:
-    """entrypoint: read clean_shell_history.txt and push every command into the db"""
     cmd_list = read_clean_history()
     if not cmd_list:
         return ('ERR_CLEAN_HISTORY_FILE_NOT_FOUND')
