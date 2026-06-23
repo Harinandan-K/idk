@@ -43,3 +43,9 @@ src/*.egg-info/
 # =========================
 logs/
 *.log
+
+# =========================
+# 6. Temp ignore
+# =========================
+src/idk/etc/raw_shell_history.txt
+src/idk/etc/clean_shell_history.txt
