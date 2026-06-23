@@ -17,4 +17,4 @@ idk = "idk.main:main"
 
 #test runs
 
-test-idk = None
+#test-idk = None
