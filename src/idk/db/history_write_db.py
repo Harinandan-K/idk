@@ -11,7 +11,7 @@ CLEAN_HISTORY_FILE: Path = Path(__file__).resolve().parent.parent / 'etc' / 'cle
 
 def read_clean_history(clean_file: Path = CLEAN_HISTORY_FILE) -> list[str]:
     """reads the cleaned command list produced by history_cleaner.py"""
-    if not clean_file.exists():
+    if  not clean_file.exists():
         logger.error(f'ERR_CLEAN_HISTORY_FILE_NOT_FOUND -> {clean_file}')
         return []
 
@@ -24,7 +24,7 @@ def read_clean_history(clean_file: Path = CLEAN_HISTORY_FILE) -> list[str]:
 
 
 def push_to_db(cmd_list: list[str]) -> str:
-    if not cmd_list:
+    if  not cmd_list:
         logger.warning('WARN_NO_COMMANDS_TO_PUSH')
         return ('WARN_NO_COMMANDS_TO_PUSH')
 

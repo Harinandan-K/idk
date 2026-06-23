@@ -1,12 +1,16 @@
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
+import logging 
 
-DB_FILE = Path(__file__).parent / "commands.db"
+logger = logging.getLogger(__name__)
+logger.info('INFO_LOGGING_DB_CREATE')
+
+DB_FILE = Path(__file__).parent / "IDK_USER.db"
 
 # context manager to handle connection, commit, rollback and closure
 @contextmanager
-def get_connection(path=DB_FILE):
+def get_connection(path : Path = DB_FILE):
     conn = sqlite3.connect(path)
     conn.row_factory = sqlite3.Row  # lets us access columns by name
     try:
@@ -21,31 +25,29 @@ def get_connection(path=DB_FILE):
     finally:
         conn.close()
 
-def init_db(path=DB_FILE):
+
+def init_db(path : Path = DB_FILE):
     with get_connection(path) as conn:
-        conn.executescript("""
-            -- stores commands and their descriptions
-            -- name is the primary key, so duplicates are blocked at schema level
-            CREATE TABLE IF NOT EXISTS commands (
-                name        TEXT PRIMARY KEY,
-                description TEXT NOT NULL
+        conn.executescript('''
+            CREATE TABLE IF NOT EXISTS COMMANDS (
+                CMD        TEXT PRIMARY KEY,
+                DESC TEXT NOT NULL
             );
 
-            -- tracks every time a command is used
-            -- cascades delete so logs clean up if a command is removed
-            CREATE TABLE IF NOT EXISTS usage_logs (
-                log_id       INTEGER PRIMARY KEY AUTOINCREMENT,
-                command_name TEXT      NOT NULL,
-                executed_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            CREATE TABLE IF NOT EXISTS USAGE_LOGS (
+                LOG_ID       INTEGER PRIMARY KEY AUTOINCREMENT,
+                NAME TEXT    NOT NULL,
+                EXECUTED_AT  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (command_name)
                     REFERENCES commands(name) ON DELETE CASCADE
             );
 
-            -- b-tree index on command_name for fast leaderboard queries
+            
             CREATE INDEX IF NOT EXISTS idx_logs_command_name
                 ON usage_logs(command_name);
-        """)
+        ''')
 
-if __name__ == "__main__":
+
+if  __name__ == "__main__":
     init_db()
     print(f"[idk] database initialised at: {DB_FILE}")
