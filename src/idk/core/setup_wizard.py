@@ -1,7 +1,5 @@
-import sys
 import logging
-import subprocess
-from pathlib import Path
+
 
 logger = logging.getLogger(__name__)
 
@@ -28,9 +26,4 @@ logger = logging.getLogger(__name__)
 
 def setup_caller() -> str:
     
-    return ('OK_SETUP_WIZARD_SUCCESS')
-
-
-if  __name__ == '__main__':
-    setup_caller()
-    print(Path(__file__).resolve().parent.parent / 'requirements.txt')
+    return ('DEBUG_SETUP_WIZARD -> need to be coded')

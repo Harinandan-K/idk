@@ -3,7 +3,6 @@ import logging
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
-logger.info('INFO_LOGGING_HISTORY_COLLECTOR')
 
 
 def shell_name_finder() -> str:
@@ -23,22 +22,23 @@ def shell_history_path_finder(shell_name: str) -> Path:
 
 def history_reader(shell_history_path: Path)-> str:
     with open(shell_history_path, "r", encoding="utf-8", errors="ignore") as shell_history:
-        logger.info('OK_FILE_READING_DONE')
+        logger.info('OK_RAW_HISTORY_READING_DONE')
         history: str = shell_history.read()
         return(history)
     
     
 def history_store(history: str)-> None:
-    raw_shell_history: Path = Path(__file__).resolve().parent.parent / 'etc' / 'raw_shell_history_V0.txt'
+    raw_shell_history: Path = Path(__file__).resolve().parent.parent / 'etc' / 'raw_shell_history.txt'
     with open(raw_shell_history, "w") as raw:
         raw.write(history)
-        logger.info(f'OK_RAW_HISTORY_WRITTEN -> all raw data written to {raw_shell_history}')
+        logger.info('OK_RAW_HISTORY_WRITTEN')
 
 
 def history_collector() -> str:
+    logger.info('INFO_LOGGING_HISTORY_COLLECTOR')
     shell_name = shell_name_finder()
     shell_history_path = shell_history_path_finder(shell_name)
     history = history_reader(shell_history_path)
     history_store(history)
 
-    return('MAIN_OK_RAW_HISTORY_UPDATED_TO_TEXT_FILE_V0')
+    return('MAIN_OK_RAW_HISTORY_UPDATED_TO_TEXT_FILE')

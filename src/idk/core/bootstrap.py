@@ -4,7 +4,7 @@ import logging
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
-logger.info('INFO_LOGGING_BOOTSTRAP')
+
 
 def os_check() -> str:
     compatable_os: list[str] = ['linux', 'darwin']
@@ -47,7 +47,7 @@ def file_perms_check() -> str:
     try:
         with open(shell_history_path, "r"):
             logger.info(f'OK_SHELL_HISTORY_FILE_FOUND -> file found in {shell_history_path}')
-            logger.info(f'OK_SHELL_HISTORY_FILE_READ_PERMS -> read access for the ./shell_history is present')
+            logger.info(f'OK_SHELL_HISTORY_FILE_READ_PERMS -> read access for the ./shell_history is granted')
             return('OK_SHELL_HISTORY_FILE_FOUND_WITH_READ_PERMS')
     except FileNotFoundError as warn:
         logger.warning(f'WARN_FILE_NOT_FOUND -> {warn}')
@@ -58,6 +58,8 @@ def file_perms_check() -> str:
     
 
 def base_checks() -> str :
+    logger.info('INFO_LOGGING_BOOTSTRAP')
+
     os_check_return: str = os_check()
     if  os_check_return.startswith('FATAL_'):
         return (f'FATAL_BASE_CHECK_UNSUCCESSFULL -> {os_check_return} ')
@@ -76,7 +78,7 @@ def base_checks() -> str :
     if file_perms_check_return.startswith('WARN_'):
         return (f'WARN_BASE_CHECK_ENCONUNTERED -> {file_perms_check_return} ')
     
-    return ('OK_ALL_CHECK_SUCCESS')
+    return ('MAIN_OK_ALL_BASE_CHECK_SUCCESS')
 
 
 if  __name__ == '__main__':

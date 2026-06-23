@@ -41,4 +41,4 @@ def history_read() -> str:
     history = history_reader(shell_history_path)
     history_store(history)
 
-    return('OK_RAW_HISTORY_UPDATED_TO_TEXT_FILE')
+    return('MAIN_OK_RAW_HISTORY_UPDATED_TO_TEXT_FILE')

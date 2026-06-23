@@ -1,0 +1,791 @@
+unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono\
+fc-cache -fv\
+p10k configure
+lsusb | grep 8BitDo
+ACTION=="add", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="310a", RUN+="/sbin/modprobe xpad", RUN+="/bin/sh -c 'echo 2dc8 310a > /sys/bus/usb/drivers/xpad/new_id'"\
+sudo udevadm control --reload
+sudo apt install jstest-gtk -y
+sudo add-apt-repository multiverse -y\
+sudo dpkg --add-architecture i386\
+sudo apt update\
+sudo apt install steam-installer -y\
+sudo apt install mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 libgl1:i386 -y
+GDK_BACKEND=x11 steam -cef-disable-gpu
+sed -i 's/hide_window_decorations yes/# hide_window_decorations yes/g' ~/.config/kitty/kitty.conf\
+sudo apt update; sudo apt upgrade -y;
+# Yazi cd-on-quit wrapper\
+function y() {\
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"\
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then\
+		builtin cd -- "$cwd"\
+	fi\
+sudo apt install eza bat zoxide -y
+~/.fzf/install --all
+# -------------------------\
+# Modern CLI Replacements\
+# Eza (Better ls)\
+# Bat (Better cat)\
+# Note: Ubuntu installs the binary as 'batcat' to avoid a name clash\
+# Zoxide (Better cd)\
+sudo apt remove neovim neovim-runtime -y
+sudo mv nvim-linux64 /opt/nvim\
+sudo ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim\
+sudo mv nvim-linux-x86_64 /opt/nvim\
+sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+sudo apt install btop++
+sudo apt install btop
+sudo apt install radeontop -y
+sudo radeontop\
+sudo apt install nvtop -y
+sudo radeontop
+sudo intel_gpu_top
+sudo apt install intel_gpu_top
+sudo apt install mangohud -y
+rfkill list all
+sudo modprobe -r hp_wmi
+sudo tee /etc/modprobe.d/blacklist-hp.conf <<< "blacklist hp_wmi"
+sudo rfkill unblock all
+sudo modprobe -r hp-wmi
+sudo tee /etc/modprobe.d/blacklist-hp.conf <<< "blacklist hp-wmi"
+sudo apt update
+sudo apt install python3 python3-pip python3-venv\
+C
+'wget -O ~/Downloads/discord.deb "https://discord.com/api/download?platform=linux&format=deb"'
+sudo apt install ~/Downloads/discord.deb -y
+sudo apt remove discord -y
+sudo snap install discord
+sudo dpkg --configure -a
+sudo apt upgrade
+ssh-keygen -t ed25519 -C "harinandankedambi@gmail.com"
+ssh-add ~/.ssh/id_ed25519
+ssh -T git@github.com
+LS
+pw
+sudo apt upgrade; sudo apt upgrade;
+OA
+deactivate
+sudo apt install ./discord-*.deb
+sudo apt install foliate
+sudo apt install calibre
+sudo apt install gnome-shell-pomodoro
+/home/ragavan/Documents/kode/ArduinoTUI/.venv/bin/python
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"\
+sudo apt install libfuse2
+sudo apt update && sudo apt install libfuse2t64
+sudo usermod -a -G dialout $USER
+sudo apt install ./discord-0.0.130.deb 
+export PATH=$PATH:~/local/bin\
+y\\
+it rm -r --cached venv
+sudo apt-get update
+sudo apt-get -y install android-tools-fastboot
+sudo apt -y install android-tools-fastboot
+sudo apt install android-tools-adb
+sudo apt install android-tools-adb android-tools-fastboot
+fastboot
+fastboot reboot
+adb devices
+adb reverse tcp:1701 tcp:1701
+sudo apt install ./Weylus_0.11.4_amd64.deb
+sudo usermod -aG uinput $USER
+sudo groupadd -f uinput
+sudo gpasswd -a $USER uinput
+sudo udevadm control --reload-rules && sudo udevadm trigger
+ghostty
+MESA_GL_VERSION_OVERRIDE=4.3 MESA_GLSL_VERSION_OVERRIDE=430 ghostty
+lsblk
+sudo apt install dolphin
+streamlit run app.py
+streamlit run main.py
+"""\
+Digital Payment & Impulse Buying Analysis Dashboard\
+This module loads survey data directly from a local CSV file, cleans the data\
+by mapping ordinal text responses to numeric values, handles missing values, \
+and generates a demographic visualization dashboard.\
+import streamlit as st\
+import pandas as pd\
+def main():\
+    """\
+    Initializes the Streamlit application interface, reads data from a hardcoded\
+    local path, and executes the automated data cleaning and visualization pipeline.\
+    st.title("Digital Payment & Impulse Buying Analysis")\
+    st.write("Automatically loading data from local directory...")\
+    file_path = "/home/ragavan/Temporary/tdpcl/Impulse Buying & Digital Payments.csv"\
+    try:\
+        # Load the CSV directly from the local machine\
+        \
+        st.subheader("1. Raw Data Preview")\
+        st.dataframe(df.head(3)) \
+        scale_mapping = {\
+            "Strongly agree": 5,\
+            "Agree": 4,\
+            "Neutral": 3,\
+            "Disagree": 2,\
+            "Strongly disagree": 1,\
+            "Very often": 5,\
+            "Often": 4,\
+            "Sometimes": 3,\
+            "Rarely": 2,\
+            "Never": 1\
+        }\
+        # Apply mapping\
+        df_cleaned = df.replace(scale_mapping)\
+        st.subheader("2. Cleaned Data (Ready for Math)")\
+        st.dataframe(df_cleaned.head(5))\
+        # ==========================================\
+        # PHASE 2: CLEANING & DEMOGRAPHICS DASHBOARD\
+        st.divider() \
+        st.header("Phase 2: Demographics Dashboard")\
+        # The Missing Data Fix\
+        df_cleaned = df_cleaned.dropna()\
+        st.success(f"Missing data removed. Total valid responses ready for math: {len(df_cleaned)}")\
+        # The Visual Layout\
+        col1, col2 = st.columns(2)\
+        with col1:\
+            st.subheader("Gender")\
+            gender_counts = df_cleaned['What is your gender'].value_counts()\
+            st.bar_chart(gender_counts)\
+        with col2:\
+            st.subheader("Current Status")\
+            status_counts = df_cleaned['Current status'].value_counts()\
+            st.bar_chart(status_counts)\
+            \
+        st.subheader("Monthly Allowance / Income")\
+        income_counts = df_cleaned["What's your monthly allowance or income for personal spending?"].value_counts()\
+        st.bar_chart(income_counts)\
+    except FileNotFoundError:\
+        st.error(f"File not found at: {file_path}")\
+        st.warning("Please verify the file exists at this exact path and that the filename is correct.")\
+if __name__ == "__main__":\
+    main()
+sudo apt autoremove;
+s
+gcc ada.c -o ada
+ada
+./ada
+sudo apt install arduino
+sudo chown $USER:$USER arduino-ide.AppImage
+./arduino-ide-filename.AppImage --no-sandbox
+./arduino-ide.AppImage --no-sandbox
+(./arduino-ide.AppImage --no-sandbox &)
+./arduino-ide.AppImage --no-sandbox & disown
+nohup ./arduino-ide.AppImage --no-sandbox > /dev/null 2>&1 &
+;c
+head myscrpit.sh
+lz
+sudo chmod +x myscrpit.sh
+./myscrpit.sh
+./demo.ram
+cler
+natha = "rama"
+natha="rama"
+sudo apt update && sudo apt install ubuntu-advantage-tools\
+sudo pro attach C1ZZCcbmxVTKBK5c6rFjaYRDwmZbw\
+sudo apt install pacman
+sudo apt install sway swaybg swayidle swaylock waybar wofi alacritty
+sudo apt install nala -y
+sudo nala update
+sudo nala install pacman
+sudo nala update && sudo nala install extrepo -y
+sudo extrepo enable librewolf
+sudo nala update && sudo nala install librewolf -y
+sudo apt update && sudo apt install git -y
+grep -rn "bindsym" .
+grep -rn "gaps" .
+sway -C
+brave
+firefox
+sudo apt install wofi
+sudo apt install pactl brightnessctl grim slurp wl-copy
+sudo apt install pulseaudio-utils brightnessctl grim slurp wl-clipboard
+brave-browser --disable-gpu
+file
+sudo apt install dolphin qtwayland5 qt6-wayland -y
+./install.sh
+brave-browser
+sudo apt install grim slurp wl-clipboard -y
+fc -R ~/.zsh_history
+sudo apt install waybar fonts-font-awesome -y
+\
+sudo apt install wlogout pavucontrol -y
+sudo apt install network-manager-gnome -y
+nm-applet --indicator &
+~/.config/waybar/style.css
+Understood. We are stripping the CPU, GPU, and RAM modules completely to keep the right side strictly for Audio, Network, and Power.\
+Here is the cleaned-up configuration for a minimalist, "pill-only" aesthetic.\
+1. Updated Waybar Config (~/.config/waybar/config)\
+Update your config file to remove the CPU/GPU/RAM modules:\
+JSON\
+￼￼\
+{\
+    "layer": "top",\
+    "position": "top",\
+    "height": 30,\
+    "spacing": 4,\
+    "modules-left": ["sway/workspaces"],\
+    "modules-right": ["pulseaudio", "network", "custom/power"],\
+    \
+    "sway/workspaces": {\
+        "disable-scroll": true,\
+        "all-outputs": true,\
+        "format": "{name}",\
+        "persistent-workspaces": {\
+            "1": [], "2": [], "3": [], "4": [], "5": []\
+    },\
+    "pulseaudio": {\
+        "format": "{icon} {volume}%",\
+        "format-muted": " Muted",\
+        "format-icons": {\
+            "default": ["", "", ""]\
+        },\
+        "on-click": "pavucontrol"\
+    "network": {\
+        "format-wifi": " {essid}",\
+        "format-ethernet": " Connected",\
+        "format-disconnected": "⃺ Disconnected",\
+        "on-click": "nm-connection-editor"\
+    "custom/power": {\
+        "format": "",\
+        "on-click": "wlogout",\
+        "tooltip": false\
+    }\
+}\
+2. Updated Waybar Style (~/.config/waybar/style.css)\
+Update your stylesheet to ensure the remaining pills are styled correctly:\
+CSS\
+* {\
+    border: none;\
+    border-radius: 100px;\
+    font-family: "Font Awesome 6 Free", sans-serif;\
+    font-size: 13px;\
+    font-weight: bold;\
+window#waybar {\
+    background-color: #0b172a;\
+    color: #cdd6f4;\
+    padding: 2px 10px;\
+#workspaces button {\
+    padding: 0 12px;\
+    background: transparent;\
+    margin: 2px 0;\
+#workspaces button.focused {\
+    background-color: #89b4fa;\
+    color: #0b172a;\
+#pulseaudio, #network, #custom-power {\
+    padding: 0 14px;\
+    margin: 3px 4px;\
+    background-color: #1e293b;\
+#custom-power {\
+    background-color: #f38ba8;\
+    color: #1e1e2e;\
+    padding: 0 16px;\
+3. How to force it to appear\
+If the bar is still invisible, the most common reason is that a previous waybar process is hung. Run this in your terminal to clear the decks:\
+Bash\
+sudo apt install wev -y
+(sudo apt install jq -y\
+;\
+
+sudo apt install jq -y\
+~/.config/waybar/config
+sudo apt install fonts-font-awesome -y
+sudo apt install fonts-font-awesome -y && fc-cache -fv
+xdg-mime default org.gnome.Evince.desktop application/pdf
+xdg-mime default org.gnome.eog.desktop image/jpeg image/png image/gif image/webp image/bmp
+sudo apt install wlogout
+sudo nala install fastfetch
+sudo apt update && sudo apt install neofetch -y
+nm-connection-editor
+~/.config/mako/config
+pkill mako && mako &
+notify-send "Test" "It should float\
+notify-send "Test" \
+notify-send "Test" "It should float\ 
+notify-send "Test" "It should float"
+mako &
+sudo apt install mako-notifier
+notify-send "Test" "It should float
+"
+pkill dunst
+systemctl --user daemon-reload
+systemctl --user enable --now mako.service
+dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep org.freedesktop.Notifications
+pkill mako && pkill dunst
+notify-send "Test" "Brave notification check"
+sudo pacman -S xdg-desktop-portal-wlr xdg-desktop-portal-gtk
+sudo apt install xdg-desktop-portal-wlr xdg-desktop-portal-gtk
+~/.config/sway/config 
+systemctl --user status xdg-desktop-portal
+[preferred]\
+default=wlr;gtk
+dbus-monitor --session "interface='org.freedesktop.portal.ScreenCast'"
+sudo apt install slurp
+sudo apt install blueman
+sudo apt install swaylock\
+sudo apt remove mako-notifier
+sudo apt install swaync
+sudo apt install sway-notification-center
+notify-send "Pro Rice" "This is the new notification center
+notify-send "Pro Rice" "This is the new notification center\
+swaync-client -rs
+swaync &
+notify-send "Pro Mode" "Custom CSS successfully applied\
+sudo apt install rofi-wayland
+sudo apt install rofi
+~/.config/sway/config
+rofi -show drun
+sudo apt install autotiling
+sudo apt install pipx
+pipx install autotiling
+~/.local/bin/autotiling
+sudo apt install playerctl
+sudo apt install swayosd
+sudo apt install pamixer brightnessctl playerctl
+sudo apt install wob
+sudo usermod -aG video $USER
+wob -c ~/.config/wob/wob.ini
+mkfifo $XDG_RUNTIME_DIR/wobpipe
+wob -c ~/.config/wob/wob.ini < $XDG_RUNTIME_DIR/wobpipe &
+wob --width 250 --height 30 --background-color 1e293b --bar-color 89b4fa --border-color 89b4fa --border-size 2 &
+mkfifo /tmp/wobpipe
+tail -f /tmp/wobpipe | wob --background-color 1e293b --bar-color 89b4fa --border-color 89b4fa &
+⃵⃴⃽ killall wob\
+wob: no process found\
+⃵⃴⃽ rm -f /tmp/wobpipe\
+⃵⃴⃽ mkfifo /tmp/wobpipe\
+⃵⃴⃽ tail -f /tmp/wobpipe | wob --background-color 1e293b --bar-color 89b4fa --border-color 89b4fa &\
+[1] 26597 26598\
+wob: unrecognized option '--background-color'                                                                                          \
+Usage: wob [options]\
+  -c, --config <config>  Specify a config file.\
+  -v, --verbose          Increase verbosity of messages, defaults to errors and warnings only.\
+  -h, --help             Show help message and quit.\
+  -V, --version          Show the version number and quit.\
+⃵⃴⃽ echo 50 > /tmp/wobpipe\
+[1]  + 26597 broken pipe  tail -f /tmp/wobpipe |                                                                                       \
+       26598 exit 1       wob --background-color 1e293b --bar-color 89b4fa --border-color 89b4fa\
+⃵⃴⃽ 
+brightnessctl --list
+sudo nvim /etc/default/grub
+sudo update-grub
+acpi_backlight=native
+;9~;9~sudo brightnessctl -d intel_backlight set 50%
+sudo brightnessctl -d intel_backlight set 50%
+sudo brightnessctl -d intel_backlight set 100%
+sudo nvim /etc/udev/rules.d/99-backlight.rules
+brightnessctl -d intel_backlight set 50%
+notify-send "Test" "Checking if style loads" -h int:value:50
+sudo apt install yad
+sudo apt install dunst libnotify-bin
+dunstctl set-paused toggle
+dunstctl history-pop.
+dunstctl history-pop
+sudo apt remove dunst
+sudo apt install power-profiles-daemon
+[200~nvim ~/.local/bin/battery_info.sh~
+sudo nano /etc/default/grub
+gcc ada.c -o adac
+pomodoro-clock
+makoctl reload
+notify-send "System Check" "This is a test. You should NOT see this -u normal\
+notify-send "System Check 2" "DND is off. You SHOULD see this immediately -u normal\
+;9u\
+notify-send "System Check" "This is a test. You should NOT see this -u normalnvim ~/.config/mako/config\
+sudo apt install nwg-look qt5ct qt6ct papirus-icon-theme
+sudo apt update && sudo apt install git golang libgtk-3-dev libcairo2-dev
+sudo apt update && sudo apt install git golang libgtk-3-dev libcairo2-dev\ 
+make build
+sudo apt install libgtk-3-dev libcairo2-dev libpango1.0-dev libglib2.0-dev
+go clean -modcache
+sudo add-apt-repository ppa:swayfx/stable
+sudo apt install git meson ninja-build libwayland-dev libwlroots-dev libxkbcommon-dev libpango1.0-dev libcairo2-dev libinput-dev libsystemd-dev libseat-dev libxcb-composite0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-xkb-dev libpixman-1-dev libjson-c-dev libpcre2-dev scdoc
+meson setup build/
+ninja -C build/
+sudo apt install libwayland-dev libwlroots-dev libxkbcommon-dev libpango1.0-dev libcairo2-dev libinput-dev libsystemd-dev libseat-dev libxcb-composite0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-xkb-dev libpixman-1-dev libjson-c-dev libpcre2-dev scdoc cmake
+JLHLHLLHLH
+sudo apt install network-manager-gnome
+~/.local/bin/battery_info.sh
+~/.local/bin/pomodoro.sh
+~/.local/bin/world_clock.sh
+~/.config/sway/theme.conf
+# Sway modular files\
+# Other tools\
+# Your professional scris\
+-git init
+sudo apt update && sudo apt install gh
+gh auth login
+sudo nala install cmatrix
+bash ~/.local/bin/control_centre.sh
+sudo apt install fastfetch
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch\
+                     ⃶⃶⃶⃵   ⃶⃶⃵⃶⃶⃶⃶⃶⃶⃶⃵ ⃶⃶⃵\
+                     ⃶⃶⃶⃶⃵  ⃶⃶⃵⃶⃶⃵⃵⃵⃵⃵⃵⃶⃶⃶⃵\
+                     ⃶⃶⃵⃶⃶⃵ ⃶⃶⃵⃶⃶⃶⃶⃶⃵  ⃵⃶⃶⃵\
+                     ⃶⃶⃵⃵⃶⃶⃵⃶⃶⃵⃶⃶⃵⃵⃵⃵   ⃶⃶⃵\
+                     ⃶⃶⃵ ⃵⃶⃶⃶⃶⃵⃶⃶⃶⃶⃶⃶⃶⃵ ⃶⃶⃵\
+                     ⃵⃵⃵  ⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵ ⃵⃵⃵\
+                N E 1   B L U E P R I N T\
+EOF
+sudo apt update && sudo apt install fastfetch
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+sudo apt install ./fastfetch-linux-amd64.deb\
+           ⃶⃶⃶⃵   ⃶⃶⃵⃶⃶⃶⃶⃶⃶⃶⃵ ⃶⃶⃵\
+           ⃶⃶⃶⃶⃵  ⃶⃶⃵⃶⃶⃵⃵⃵⃵⃵⃵⃶⃶⃶⃵\
+           ⃶⃶⃵⃶⃶⃵ ⃶⃶⃵⃶⃶⃶⃶⃶⃵  ⃵⃶⃶⃵\
+           ⃶⃶⃵⃵⃶⃶⃵⃶⃶⃵⃶⃶⃵⃵⃵⃵   ⃶⃶⃵\
+           ⃶⃶⃵ ⃵⃶⃶⃶⃶⃵⃶⃶⃶⃶⃶⃶⃶⃵ ⃶⃶⃵\
+           ⃵⃵⃵  ⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵⃵ ⃵⃵⃵\
+nivm /home/ragavan/.config/sway/keybindings.conf
+nnvim /home/ragavan/.config/sway/keybindings.conf
+~/.local/bin/launch_wlogout.sh
+bluetoothctl devices
+sudo apt install bluetooth bluez rofi
+sudo apt install bluez-tools rofi
+~/.local/bin/rofi-bluetooth
+sudo apt install bluez bluez-tools rofi bc
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+nautilus -q
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+sudo apt install git sassc libglib2.0-dev-bin
+./install.sh -c dark -t all -l
+gsettings set org.gnome.desktop.interface gtk-theme 'Orchis-Dark'\
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'\
+./install.sh blue
+gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-blue-dark'
+./install.sh -t default -c dark -l
+./install.sh -t default\
+gsettings set org.gnome.desktop.interface icon-theme 'Colloid-Dark'\
+./install.sh -t default -c dark -l\
+nautilus &
+sudo ./install.sh -t default
+gsettings set org.gnome.desktop.interface icon-theme 'Colloid-Dark'
+sudo flatpak override --filesystem=/usr/share/icons
+sudo gtk-update-icon-cache -f -t /usr/share/icons/Colloid-Dark/
+sudo ./install.sh -d /usr/share/icons\
+sudo gtk-update-icon-cache -f -t /usr/share/icons/Fluent-dark/\
+gsettings set org.gnome.desktop.interface icon-theme 'Fluent-dark'
+sudo apt install ./zoom_amd64.deb\
+sudo snap install zoom-client
+sudo apt install r-base\
+sudo apt install r-base-dev\
+sudo apt install gdebi-core
+sudo gdebi  rstudio-2026.04.0-526-amd64.deb
+sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
+sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libxml2-dev libuv1-dev
+.oh-my-zsh
+grep -i "slash" ~/.config/sway/keybindings.conf
+sudo open ~/.local/bin/control_centre.sh
+sudo apt install adb fastboot\
+sudo apt install python3-venv python3-pip git libusb-1.0-0\
+'\
+.
+sudo ./venv/bin/python mtk reset
+sudo ./venv/bin/python -m mtk reset
+sudo systemctl stop ModemManager
+sudo ./venv/bin/python -m mtk crash
+sudo apt remove brltty
+sudo ./venv/bin/python mtk.py crash --preloader
+cadfeine 
+lsusb
+bluetoothctl
+rfkill list
+sudo rfkill unblock bluetooth
+sudo systemctl restart bluetooth
+blueman-manager
+xdg-open .
+include ~/.config/sway/wallpaper.conf
+bash ~/.local/bin/wallpaper_picker.sh
+brightnessctl -d acpi_video0 set 10%-
+brightnessctl -d acpi_video1 set 10%-
+brightnessctl -d acpi_video0 set 10%+
+sudo apt install wine64 wine32
+wine WizardOfLegend.exe
+sudo apt install lm-sensors stress btop
+sudo sensors-detect --auto
+sensors
+stress -c $(nproc) --timeout 300
+dmesg | grep -i mce
+sudo dmesg | grep -i mce
+sudo timedatectl set-time-sync 1\
+sudo timedatectl set-timezone Asia/Kolkata\
+sudo timedatectl set-ntp true\
+sudo systemctl restart systemd-timesyncd
+systemctl status systemd-timesyncd\
+sudo timedatectl set-ntp false\
+sudo date -s "2026-05-20 23:48:00" \
+sudo apt install ani-cli
+ani-cli
+brew install yt-dlp
+sudo apt update && sudo apt install yt-dlp ffmpeg
+sudo chmod a+rx /usr/local/bin/yt-dlp
+sudo timedatectl set-ntp true
+sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp\
+sudo chmod a+rx /usr/local/bin/yt-dlp\
+timedatectl set-local-rtc 1 --adjust-system-clock
+	sudo apt update\
+sudo apt install ffmpeg
+sudo timedatectl set-time "2026-05-21 15:10:00"\
+yt-dlp https://animejoker.com/episode/shinchan-1x1/
+yt-dlp "https://animejoker.com/episode/shinchan-1x1/"
+sudo snap install telegram-desktop
+zsh -xv 2>&1 | grep -C 5 "unknown option: --zsh"
+./install\
+	sudo apt update && sudo apt install ntfs-3g exfat-fuse exfatprogs
+sudo ntfsfix /dev/sdc1
+sudo ntfsfix /dev/sdc2
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+exec zsh
+sudo apt install ntfs-3g exfat-fuse exfatprogs\
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+sudo dmesg | tail -n 15
+sudo blkid /dev/sdc1
+sudo mount -t ntfs-3g /dev/sdc1 /media/mypassport_test
+sudo umount -t ntfs-3g /dev/sdc1 /media/mypassport_test
+sudo apt install exfat-fuse exfatprogs ntfs-3g
+sudo mount -t ntfs-3g -o remove_hiberfile /dev/sdc1 /mnt/usb
+sudo mount -t ntfs-3g -o remove_hiberfile /dev/sdc2 /mnt/usb
+sudo umount /mnt/usb
+sudo apt remove fzf
+sed -i 's/p11k/p10k/g' ~/.zshrc\
+sed -i 's/powerlevel11k/powerlevel10k/g' ~/.zshrc\
+sed -i 's|\[ -f ~/.fzf.zsh \] && source ~/.fzf.zsh|[ -f ~/.fzf.zsh ] \&\& source ~/.fzf.zsh > /dev/null 2>\&1|g' ~/.zshrc\
+sed -i 's/typeset -g POWERLEVEL9K_INSTANT_PROMPT=.*/typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet/g' ~/.p10k.zsh\
+head demo.ram
+files=$(tree)
+files
+files_in_doc=$(cd Documents; tree;)
+files_in_doc=$(tree Documents)
+env
+expr 30+10
+expr 30 + 10
+expr 30 ** 10
+expr 30 * 10
+expr 30 \** 10
+expr 30 \* 10
+sudo apt update && sudo apt upgrade;
+sudo apt install imagemagick
+grep -rn "ragavan" ~/.config ~/.local/bin
+grep -rn "ragavan" ~/.config ~/.local/bin > ~/needs_fixing.txt
+rf -rf dotfiles
+sudo apt install stow
+stow btop fastfetch gtk kitty mako nvim nvtop rofi sway waybar wlogout wob xdg core scripts\
+stow assets
+stow zsh
+stow assets\
+gh repo rename Ne1-Sway-Rice -R Harinandan-K/Ziap-Sway-Blueprint -y
+# Ne1 Chalk | Sway WM Dotfiles\
+//img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)\
+![Sway](https://img.shields.io/badge/Sway-111111?style=for-the-badge&logo=sway&logoColor=white)\
+![Ne1 Chalk Desktop](./images/desktop.jpg)\
+> Ne1 Chalk is a clean, fully automated, and keyboard-driven Wayland environment built on the Sway Window Manager. Designed specifically for Ubuntu and Debian systems, it features a monochromatic aesthetic, deep terminal integration, and a modular architecture managed entirely via GNU Stow.\
+---\
+## ︃ Tools Used\
+* **Sway:** A Wayland tiling window manager configured with custom gaps, borders, and auto-tiling logic.\
+* **Waybar:** A highly customizable status bar featuring interactive hardware controls and custom script toggles (Caffeine, DND).\
+* **Rofi (Wayland):** The application launcher, heavily modified to serve as the system's central graphical UI.\
+* **Kitty:** A GPU-accelerated terminal emulator styled perfectly with JetBrainsMono Nerd Fonts.\
+* **Zsh & Powerlevel10k:** A fast, feature-rich shell environment packed with modern CLI replacements (Zoxide, Eza, Bat).\
+* **Neovim (LazyVim):** A blazing-fast, extensible text editor tailored for developer productivity.\
+* **GNU Stow:** A symlink farm manager used to perfectly version-control and 1-click deploy this entire setup.\
+## ⃺︃ The Ne1 Control Center\
+![Ne1 Control Center](./images/control-center.png)\
+Built entirely from scratch using Rofi, the Control Center acts as the brain of the desktop. Triggered via **`Win + /`**, it provides instant access to system keybindings, architecture documentation, default application lists, and a built-in wallpaper picker.\
+## ⃯ Session Management\
+![Ne1 Power Menu](./images/power-menu.png)\
+A sleek, heavily customized Rofi power menu handles system states (Triggered via **`Win + Shift + E`**). Additionally, the lock screen (`Win + Escape`) utilizes a custom script leveraging `grim`, `imagemagick`, and `swaylock` to instantly capture and smoothly blur your active workspace before locking.\
+##  Installation Architecture\
+This repository uses **GNU Stow** to manage symbolic links, keeping your actual configuration files safely version-controlled. 
+yt-dlp 'https://www.youtube.com/watch?v=GbRDHoTTNnQ&t=2943s'
+sudo apt update -y && sudo apt install audacity -y\
+sudo apt install ntpdate -y\
+sudo ntpdate pool.ntp.org\
+sudo apt update && sudo apt install audacity -y\
+yt-dlp -x 'https://www.youtube.com/watch?v=bUE0hMqKEaU&pp=ygUVc291bmRhcmFyYWphbSBhc2hyYXll'
+sudo ntfsfix -d /dev/sdc1
+sudo mount -t ntfs-3g /dev/sdc1 /mnt/passport
+sudo umount -t ntfs-3g /dev/sdc1 /mnt/passport
+sudo update-initramfs -u
+sudo ntfsfix -d /dev/sdc2
+sudo mount -t ntfs-3g /dev/sdc2 /mnt/passport_part2
+sudo umount -t ntfs-3g /dev/sdc2 /mnt/passport_part2
+file .
+sudo apt update && sudo apt upgrade -y;
+sudo timedatectl set-timezone Asia/Kolkata
+sudo systemctl restart systemd-timesyncd.service
+timedatectl status
+yt-dlp -x 'https://music.youtube.com/watch?v=UqvvBDnApcc&si=yW95UWZS0FpPBHiz'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=RxAu1VsaGtc&si=8wWp8jIzpJzhmINV'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=JaTiEJx6S5w&si=Zcvtg_UkYC--j80n'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=1i-M6IcpKCo&si=k1qsQPgYFDTXzcoO'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=d6e97Nf8sII&si=sVJWYQLcn7MW4Kn_'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=UqvvBDnApcc&si=17SR6E9kvb6TIQzP'
+sudo apt install qt5ct qt6ct
+sudo timedatectl set-time "2026-05-26 20:30:00"\
+qt5ct
+sudo apt install kio-gdrive kaccounts-providers kaccounts-integration signond
+sudo apt install kvantum qt5-style-kvantum qt6-style-kvantum
+sudo apt install qt5-style-kvantum qt5-style-kvantum-themes
+kvantummanager
+QT_QPA_PLATFORMTHEME=qt5ct dolphin
+sudo apt install breeze-icon-theme
+[General]\
+ColorScheme=BreezeDark\
+[Colors:View]\
+BackgroundNormal=9,9,14\
+BackgroundAlternate=9,9,14\
+ForegroundNormal=205,214,244\
+[Colors:Window]\
+[Colors:Button]\
+[Colors:Selection]\
+BackgroundNormal=137,180,250\
+ForegroundNormal=9,9,14\
+[ColorScheme]\
+active_colors=#cdd6f4, #09090e, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #09090e, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #09090e, #09090e, #313244, #cdd6f4, #45475a\
+disabled_colors=#cdd6f4, #09090e, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #09090e, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #09090e, #09090e, #313244, #cdd6f4, #45475a\
+inactive_colors=#cdd6f4, #09090e, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #09090e, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #09090e, #09090e, #313244, #cdd6f4, #45475a\
+active_colors=#cdd6f4, #1e1e2e, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #1e1e2e, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+disabled_colors=#cdd6f4, #1e1e2e, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #1e1e2e, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+inactive_colors=#cdd6f4, #1e1e2e, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #1e1e2e, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+BackgroundAlternate=18,18,26\
+BackgroundNormal=30,30,46\
+# 1. Update the qt5ct Palette with seamless colors and fixed text\
+active_colors=#cdd6f4, #11111b, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #09090e, #09090e, #11111b, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+disabled_colors=#cdd6f4, #11111b, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #09090e, #09090e, #11111b, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+inactive_colors=#cdd6f4, #11111b, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #09090e, #09090e, #11111b, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+EOF\
+# 2. Update the hidden KDE override file to match\
+BackgroundNormal=17,17,27\
+active_colors=#cdd6f4, #11111b, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #11111b, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+disabled_colors=#cdd6f4, #11111b, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #11111b, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+inactive_colors=#cdd6f4, #11111b, #ffffff, #bac2de, #000000, #313244, #cdd6f4, #ffffff, #cdd6f4, #09090e, #11111b, #000000, #89b4fa, #09090e, #86e1fc, #f5c2e7, #12121a, #09090e, #313244, #cdd6f4, #45475a\
+/* Surgically target the location bar and search inputs */\
+QLineEdit, KUrlNavigator {\
+    background-color: #313244;\
+    border: 1px solid #45475a;\
+    border-radius: 4px;\
+    padding: 2px 4px;\
+active_colors=#bac2de, #181825, #ffffff, #a6adc8, #000000, #313244, #bac2de, #ffffff, #bac2de, #1e1e2e, #181825, #000000, #89b4fa, #181825, #86e1fc, #f5c2e7, #181825, #1e1e2e, #313244, #bac2de, #45475a\
+disabled_colors=#bac2de, #181825, #ffffff, #a6adc8, #000000, #313244, #bac2de, #ffffff, #bac2de, #1e1e2e, #181825, #000000, #89b4fa, #181825, #86e1fc, #f5c2e7, #181825, #1e1e2e, #313244, #bac2de, #45475a\
+inactive_colors=#bac2de, #181825, #ffffff, #a6adc8, #000000, #313244, #bac2de, #ffffff, #bac2de, #1e1e2e, #181825, #000000, #89b4fa, #181825, #86e1fc, #f5c2e7, #181825, #1e1e2e, #313244, #bac2de, #45475a\
+BackgroundAlternate=24,24,37\
+ForegroundNormal=186,194,222\
+BackgroundNormal=24,24,37\
+ForegroundNormal=24,24,37\
+active_colors=#cdd6f4, #313244, #ffffff, #a6adc8, #000000, #45475a, #bac2de, #ffffff, #cdd6f4, #1e1e2e, #313244, #000000, #89b4fa, #181825, #86e1fc, #f5c2e7, #181825, #1e1e2e, #313244, #cdd6f4, #45475a\
+disabled_colors=#cdd6f4, #313244, #ffffff, #a6adc8, #000000, #45475a, #bac2de, #ffffff, #cdd6f4, #1e1e2e, #313244, #000000, #89b4fa, #181825, #86e1fc, #f5c2e7, #181825, #1e1e2e, #313244, #cdd6f4, #45475a\
+inactive_colors=#cdd6f4, #313244, #ffffff, #a6adc8, #000000, #45475a, #bac2de, #ffffff, #cdd6f4, #1e1e2e, #313244, #000000, #89b4fa, #181825, #86e1fc, #f5c2e7, #181825, #1e1e2e, #313244, #cdd6f4, #45475a\
+BackgroundNormal=49,50,68\
+./m
+return {\
+  { "echasnovski/mini.pairs", enabled = false }\
+  { "nvim-mini/mini.pairs", enabled = false }\
+sudo apt install vim
+sudo apt install lua5.1 luarocks nodejs npm python3-pynvim
+sudo apt install npm luarocks
+sudo npm install -g tree-sitter-cli
+sudo apt install lazygit sqlite3
+sudo apt install python3-venv python3-pip python3-pynvim\
+sudo npm install -g neovim
+sudo apt update && sudo apt install s-tui stress
+sudo timedatectl set-ntp false
+sudo timedatectl set-time "2026-05-27 17:35:00"
+timedatectl
+sudo s-tui
+sudo apt install gamemode
+sudo apt update && sudo apt install radeontop
+sudo radeontop -c
+sudo nala update && sudo nala upgrade -y;
+which bash
+pws -L
+batcat help
+batcat -h
+batcat -l bash
+car -L
+itten @ get-colors
+kitten @ get-colors
+yt-dlp -x --audio-format mp3 
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=zOnzSZvYIiQ&si=nXsQf-VxzYRe8O7p'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=RybVy5hRk4I&si=tVAYCwdhJKOwboUr'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=x2UQE-g4y18&si=3SPmrRjpXS6Hyof5'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=TYcUz8iEn8I&si=bgMOKoJrxvR2YT1W'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=FliycbYpYg0&si=tPzwqybEDiNMFzbW'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=m5UgzBf3UsE&si=qwvEsYrZfWFl6I3X'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=W03GiYGvswc&si=twNQHBkyeNj28HFr'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=BoAs05YjXsc&si=RU7oc6_6T6m9Btc5'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=HQUW-66huRM&si=p-nJvj3-u_VY7PQ8'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=TDMYCNuj6qs&si=80jyhv531jNGE0F-'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=pipcLKrEYrM&si=QLToebs9KwWsPiXx'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=jtdMrAAKNIE&si=a8MEROcik2zPl7lM'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=YB6AZ5IPEOU&si=SlRqPMHbtDOf-jt3'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=uSdBxz3QmWk&si=n952W5kmZOUOpd3L'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=N7vS1KeLoe8&si=Tpq0xce9u3Q9OC24'
+yt-dlp -x --audio-format mp3 'https://music.youtube.com/watch?v=TLhM9HzUiNk&si=k-01hUDZGDOnkLZz'
+sudo apt install easytag -y\
+sudo apt install exfatprogs
+sudo apt install exfat-fuse exfat-utils
+pa
+sudo apt install ./xmcl-0.56.4-arm64.deb
+sudo apt install ./xmcl.deb
+sudo dpkg -i xmcl.deb
+sudo apt install -f
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub app.xmcl.voxelum
+flatpak run app.xmcl.voxelum
+./PrismLauncher-Linux-x86_64.AppImage
+fortune
+sudo apt install fortune
+fortune -v
+command -v frotune
+command -v fortune
+which fortune
+fortune reddile
+fortune riddle
+adress=which fortune
+fortune science
+fortune -c
+sudo apt install cowsay
+sudo nala install navi
+sudo apt update && sudo apt install fastboot\
+sudo fastboot devices\
+sudo apt install flatpak gnome-software-plugin-flatpak\
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo\
+flatpak install io.github.zen_browser.zen\
+flatpak override app.zen_browser.zen --filesystem=home
+flatpak override --user --filesystem=home app.zen_browser.zen\
+zen-browser
+flatpak run app.zen_browser.zen
+natalus
+xdg-open
+nautilus
+sudo apt install simple-screen-recorder
+sudo apt install simplescreenrecorder
+simplescreenrecorder
+sudo apt remove simplescreenrecorder
+flatpak install flathub io.github.seadve.Kooha
+sudo snap install blue-recorder\
+sudo apt update;
+sudo nala update;
+sudo nala update; sudo nala upgrade -y;
+lsmod | grep uinput
+udo modprobe uinput
+sudo modprobe uinput
+lsa
+sudo nala autoremove
+log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+mkdit log
+/bin/python3
+idk
+os.environ.get("SHELL")
+'
+sudo apt install git-filter-repo
+/home/ragavan/Documents/kode/idk/src/idk/etc/raw_shell_history_V0.txt
+idk --help
+idk demo --help
+idk h --help
+idk -h
+idk -h l 
+which python
+which python3
+so source /home/ragavan/Documents/kode/idk/.venv/bin/activate
+IDK

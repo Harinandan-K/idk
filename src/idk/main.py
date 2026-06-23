@@ -1,11 +1,9 @@
 import logging.config
 from idk.core import bootstrap, history_collector, log_config, setup_wizard, history_cleaner
-from idk.cli import cli
+#from idk.cli import cli
 
 
 def main() -> None:
-
-   cli.run()
 
    #setting up the logger
    logging.config.dictConfig(log_config.LOGGING_CONFIG)
@@ -20,6 +18,8 @@ def main() -> None:
       logger.debug('Need to pass the ERR cli module')
    else:
       logger.info(base_check_return)
+
+   #cli call for first run
 
    #setup wizard round 1
    setup_caller_return: str = setup_wizard.setup_caller()
@@ -37,7 +37,7 @@ def main() -> None:
 
    #filter shell history (src/idk/etc/raw_shell_history.txt)
    history_cleaner_return: str = history_cleaner.history_cleaner()
-   if  history_cleaner_return.startswith('FATAL_'):
+   if  base_check_return.startswith('ERR_') or history_cleaner_return.startswith('FATAL_'):
       logger.debug('Need to pass the ERR cli module')
    else:
       logger.info(history_cleaner_return)

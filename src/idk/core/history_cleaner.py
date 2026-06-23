@@ -13,7 +13,7 @@ class Cleaner():
 
 
     def read_raw_data(self) -> list[str]:
-        raw_shell_history: Path = Path(__file__).resolve().parent.parent / 'etc' / 'raw_shell_history_V0.txt'
+        raw_shell_history: Path = Path(__file__).resolve().parent.parent / 'etc' / 'raw_shell_history.txt'
         with open (raw_shell_history, 'r') as raw_file:
             history_list: list[str] = raw_file.readlines()
         logger.info("OK_RAW_DATA_READ")
@@ -27,7 +27,6 @@ class Cleaner():
             cleaned_line = re.sub(METADATA, "", line)
             meta_data_removed_list.append(cleaned_line)
             self.loc_l0 += 1
-            logger.debug(f'DEBUG_LOC_RAW = {self.loc_l0}')
         logger.info("OK_META_DATA_STRIPPED_FROM_RAW_HISTORY")
         return meta_data_removed_list
 
@@ -116,4 +115,4 @@ class Cleaner():
 def history_cleaner() -> str:
     my_machine = Cleaner()
     my_machine.clean_cycle()
-    return 'OK_ALL_CLEAN_CYCLE_SUCCESS'
+    return 'MAIN_OK_ALL_CLEAN_CYCLE_SUCCESS'
