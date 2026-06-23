@@ -82,5 +82,4 @@ def base_checks() -> str :
 
 
 if  __name__ == '__main__':
-    base_checks()
-    print(os.environ.get('SHELL'))
+    pass

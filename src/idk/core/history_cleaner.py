@@ -116,3 +116,6 @@ def history_cleaner() -> str:
     my_machine = Cleaner()
     my_machine.clean_cycle()
     return 'MAIN_OK_ALL_CLEAN_CYCLE_SUCCESS'
+
+if  __name__ == '__main__':
+    pass

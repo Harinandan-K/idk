@@ -10,3 +10,6 @@ def fetch_history():
 
 def run() -> None:
     idk_cli()
+
+if  __name__ == '__main__':
+    pass

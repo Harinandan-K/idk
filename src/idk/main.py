@@ -28,19 +28,22 @@ def main() -> None:
    else:
       logger.info(setup_caller_return)
 
-   #read shell history from ./<shell>_history
+   #read shell history
    history_collector_return: str = history_collector.history_collector()
    if  history_collector_return.startswith('FATAL_'):
       logger.debug('Need to pass the ERR cli module')
    else:
       logger.info(history_collector_return)
 
-   #filter shell history (src/idk/etc/raw_shell_history.txt)
+   #clean shell history
    history_cleaner_return: str = history_cleaner.history_cleaner()
    if  base_check_return.startswith('ERR_') or history_cleaner_return.startswith('FATAL_'):
       logger.debug('Need to pass the ERR cli module')
    else:
       logger.info(history_cleaner_return)
+
+   #push the clean history to db
+   
 
 if __name__ == '__main__':
    main()

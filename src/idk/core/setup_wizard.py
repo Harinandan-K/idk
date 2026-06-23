@@ -25,5 +25,7 @@ logger = logging.getLogger(__name__)
     
 
 def setup_caller() -> str:
-    
     return ('DEBUG_SETUP_WIZARD -> need to be coded')
+
+if  __name__ == '__main__':
+    pass

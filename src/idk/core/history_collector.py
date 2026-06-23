@@ -42,3 +42,6 @@ def history_collector() -> str:
     history_store(history)
 
     return('MAIN_OK_RAW_HISTORY_UPDATED_TO_TEXT_FILE')
+
+if  __name__ == '__main__':
+    pass
