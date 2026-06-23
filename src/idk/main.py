@@ -1,8 +1,8 @@
 import logging.config
 from pathlib import Path
-from idk.core import bootstrap, history_collector, log_config, setup_wizard, history_cleaner
 #from idk.cli import cli
-from idk.db import create_db
+#from idk.db import create_db
+from idk.core import bootstrap, history_collector, log_config, history_cleaner
 
 def main() -> None:
 
@@ -23,21 +23,23 @@ def main() -> None:
 
    # check for first install run
    if not  (Path(__file__).resolve().parent.parent / 'db' / 'IDK_USER.db').exists():
+      logger.debug("DEBUG_FIRST_RUN_TEST")
+
+
       #create DB
-      create_db_return = create_db.init_db()
-      '''if  create_db_return.startswith('FATAL_'):
+      logger.error('ERR_VARIBLE_MISSMATCH -> updated all upper case varibles are not updated in the codes fomr line 39 to 45')
+      '''create_db_return = create_db.init_db()
+      if  create_db_return.startswith('FATAL_'):
          logger.debug('Need to pass the ERR cli module')
       else:
          logger.info(create_db_return)'''
       
+      logger.error('ERR_MISSING_EXPECTED_RETURN -> main.py expects a return of the code stats (OK_, ERR_, FATAL_) from /idk/db/create.db')
+      logger.debug('INFO_DEL_ERROR_LOG -> if the errors are fixed delete the code line for error {ERR_VARIBLE_MISSMATCH} & {ERR_MISSING_EXPECTED_RETURN}. Also del ONLY this debug log code ')
+      
+      
       #cli call for first run -> welcome msg
 
-      #setup wizard round 1
-      '''setup_caller_return: str = setup_wizard.setup_caller()
-      if  setup_caller_return.startswith('FATAL_'):
-         logger.debug('Need to pass the ERR cli module')
-      else:
-         logger.info(setup_caller_return)
 
 
       #read shell history
@@ -52,7 +54,7 @@ def main() -> None:
       if  base_check_return.startswith('ERR_') or history_cleaner_return.startswith('FATAL_'):
          logger.debug('Need to pass the ERR cli module')
       else:
-         logger.info(history_cleaner_return)'''
+         logger.info(history_cleaner_return)
 
       #push the clean history to db
    

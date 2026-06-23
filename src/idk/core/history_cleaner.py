@@ -72,7 +72,7 @@ class Cleaner():
         for line in common_cmd_remove_list:
             is_pwd = False
             for pattern in THE_NUKE:
-                if pattern.search(line): 
+                if pattern.search(line):
                     is_pwd = True
                     break 
             if not is_pwd:
@@ -98,7 +98,7 @@ class Cleaner():
 
 
     def clean_cycle(self) -> None:
-        logger.info("OK_CLEANING_CYCLE_STARTED")
+        logger.info("INFO_CLEANING_CYCLE_STARTED")
         history = self.read_raw_data()
         meta_data_removed_list = self.meta_data_remove(history)
         duplicate_removed_list = self.duplicate_cmd_remove(meta_data_removed_list)
