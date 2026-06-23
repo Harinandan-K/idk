@@ -19,7 +19,9 @@ def main() -> None:
    else:
       logger.info(base_check_return)
 
-   #cli call for first run
+   logger.debug('DEBUG_CHECK_FOR_1st_RUN -> check if idk is a new install or not')
+   #create DB
+   #cli call for first run -> welcome msg
 
    #setup wizard round 1
    setup_caller_return: str = setup_wizard.setup_caller()
@@ -27,6 +29,7 @@ def main() -> None:
       logger.debug('Need to pass the ERR cli module')
    else:
       logger.info(setup_caller_return)
+
 
    #read shell history
    history_collector_return: str = history_collector.history_collector()
