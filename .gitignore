@@ -1,0 +1,13 @@
+# --- Application Runtime Data ---
+/logs/
+*.log
+
+# --- Testing Artifacts ---
+.pytest_cache/
+
+# --- Standard Python & uv Clutter ---
+__pycache__/
+
+# Local virtual environment (handled by uv)
+.venv/
+
